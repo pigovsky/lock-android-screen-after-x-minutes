@@ -48,10 +48,4 @@
         android:layout_height="wrap_content"
         android:text="@string/lock_screen_button" />
 
-    <Button
-        android:id="@+id/enable_admin_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/enable_admin_button" />
-
 </LinearLayout>
