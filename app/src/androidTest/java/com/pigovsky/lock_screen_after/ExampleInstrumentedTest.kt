@@ -1,4 +1,4 @@
-package com.pigovsky.schedule_airplane_mode
+package com.pigovsky.lock_screen_after
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.pigovsky.schedule_airplane_mode", appContext.packageName)
+        assertEquals("com.pigovsky.lock_screen_after", appContext.packageName)
     }
 }

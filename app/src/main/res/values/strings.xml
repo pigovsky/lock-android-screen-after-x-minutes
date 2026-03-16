@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">schedule-airplane-mode</string>
+    <string name="app_name">lock-screen-after</string>
     <string name="enable_admin_button">Enable Admin</string>
     <string name="lock_screen_button">Lock Screen</string>
     <string name="device_admin_description">Some</string>

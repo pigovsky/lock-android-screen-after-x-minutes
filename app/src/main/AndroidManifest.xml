@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.pigovsky.schedule_airplane_mode">
+    package="com.pigovsky.lock_screen_after">
 
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,7 +21,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_DEVICE_ADMIN"
-            android:name="com.pigovsky.schedule_airplane_mode.MyDeviceAdminReceiver">
+            android:name="com.pigovsky.lock_screen_after.MyDeviceAdminReceiver">
             <meta-data
                 android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_policies" />
@@ -31,12 +32,12 @@
         </receiver>
         <receiver
             android:enabled="true" android:exported="false"
-            android:name="com.pigovsky.schedule_airplane_mode.MyAlarmReceiver" />
+            android:name="com.pigovsky.lock_screen_after.MyAlarmReceiver" />
         <activity
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Scheduleairplanemode"
-            android:name="com.pigovsky.schedule_airplane_mode.MainActivity">
+            android:name="com.pigovsky.lock_screen_after.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

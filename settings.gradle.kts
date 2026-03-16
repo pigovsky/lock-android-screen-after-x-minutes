@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "schedule-airplane-mode"
+rootProject.name = "lock-screen-after"
 include(":app")

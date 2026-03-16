@@ -1,4 +1,4 @@
-package com.pigovsky.schedule_airplane_mode.ui.theme
+package com.pigovsky.lock_screen_after.ui.theme
 
 import android.app.Activity
 import android.os.Build

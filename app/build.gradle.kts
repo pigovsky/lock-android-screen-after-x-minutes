@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.pigovsky.schedule_airplane_mode"
+    namespace = "com.pigovsky.lock_screen_after"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.pigovsky.schedule_airplane_mode"
+        applicationId = "com.pigovsky.lock_screen_after"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

@@ -1,4 +1,4 @@
-package com.pigovsky.schedule_airplane_mode
+package com.pigovsky.lock_screen_after
 
 import android.app.Activity
 import android.os.Bundle
@@ -15,6 +15,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import java.util.Locale
+import android.provider.Settings
+import android.net.Uri
 
 class MainActivity : ComponentActivity() {
 
@@ -37,6 +39,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main) // Replace with your layout
+
+        // Check for "Display over other apps" permission (Overlay permission)
+        // This is required to start activities from background on Android 10+
+        if (!Settings.canDrawOverlays(this)) {
+            Toast.makeText(this, "Please grant 'Display over other apps' permission to allow minimizing other apps.", Toast.LENGTH_LONG).show()
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:$packageName")
+            )
+            startActivity(intent)
+        }
 
         textToSpeech = TextToSpeech(this, onSpeechInit)
 
@@ -87,7 +100,7 @@ class MainActivity : ComponentActivity() {
         // Observe LiveData for messages from the AlarmReceiver
         AppEvents.alarmMessage.observe(this, Observer { message ->
             textToSpeech!!.speak(
-                "Єва, інтернет закінчився! Слухай маму і тата!",
+                "Єва, тебе ще не болять очі?! Краще пограйся з братиком Ромчиком!",
                 TextToSpeech.QUEUE_FLUSH,
                 null,
                 null

@@ -1,4 +1,4 @@
-package com.pigovsky.schedule_airplane_mode
+package com.pigovsky.lock_screen_after
 
 import android.app.AlarmManager
 import android.app.PendingIntent
