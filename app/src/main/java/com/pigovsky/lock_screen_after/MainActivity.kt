@@ -27,13 +27,18 @@ class MainActivity : ComponentActivity() {
     val onSpeechInit = TextToSpeech.OnInitListener { status ->
         if (status == TextToSpeech.SUCCESS) {
             canSpeak = true
-            textToSpeech!!.setLanguage(Locale.UK)
-            textToSpeech!!.setSpeechRate(1.0f)
-            textToSpeech!!.speak("Привіт, Єва!", TextToSpeech.QUEUE_FLUSH, null, null)
+            speakUkrainian("Привіт, Єва!")
         } else {
             canSpeak = false
         }
     }
+
+    private fun speakUkrainian(text: String) {
+        textToSpeech!!.setLanguage(Locale.UK)
+        textToSpeech!!.setSpeechRate(1.0f)
+        textToSpeech!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+    }
+
     var textToSpeech: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,11 +104,8 @@ class MainActivity : ComponentActivity() {
 
         // Observe LiveData for messages from the AlarmReceiver
         AppEvents.alarmMessage.observe(this, Observer { message ->
-            textToSpeech!!.speak(
-                "Єва, тебе ще не болять очі?! Краще пограйся з братиком Ромчиком!",
-                TextToSpeech.QUEUE_FLUSH,
-                null,
-                null
+            speakUkrainian(
+                "Єва, тебе ще не болять очі?! Краще пограйся з братиком Ромчиком!"
             )
             lockScreenButton.isEnabled = true
             textView.text = message
