@@ -18,6 +18,10 @@ import java.util.Locale
 import android.provider.Settings
 import android.net.Uri
 
+private const val DefaultGreeting = "Привіт, Єва!"
+
+private const val DefaultAlarmText = "Єва, очі ще не болять?"
+
 class MainActivity : ComponentActivity() {
 
     private lateinit var devicePolicyManager: DevicePolicyManager
@@ -27,14 +31,17 @@ class MainActivity : ComponentActivity() {
     val onSpeechInit = TextToSpeech.OnInitListener { status ->
         if (status == TextToSpeech.SUCCESS) {
             canSpeak = true
-            speakUkrainian("Привіт, Єва!")
+            val sharedPref = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+            val lang = sharedPref.getString("language_code", "uk") ?: "uk"
+            val greeting = sharedPref.getString("greeting_text", DefaultGreeting) ?: DefaultGreeting
+            speak(greeting, Locale(lang))
         } else {
             canSpeak = false
         }
     }
 
-    private fun speakUkrainian(text: String) {
-        textToSpeech!!.setLanguage(Locale.UK)
+    private fun speak(text: String, locale: Locale) {
+        textToSpeech!!.setLanguage(locale)
         textToSpeech!!.setSpeechRate(1.0f)
         textToSpeech!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
@@ -57,6 +64,10 @@ class MainActivity : ComponentActivity() {
         }
 
         textToSpeech = TextToSpeech(this, onSpeechInit)
+
+        findViewById<Button>(R.id.settings_button).setOnClickListener {
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
 
         devicePolicyManager = getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
         compName = ComponentName(this, MyDeviceAdminReceiver::class.java)
@@ -104,9 +115,10 @@ class MainActivity : ComponentActivity() {
 
         // Observe LiveData for messages from the AlarmReceiver
         AppEvents.alarmMessage.observe(this, Observer { message ->
-            speakUkrainian(
-                "Єва, тебе ще не болять очі?! Краще пограйся з братиком Ромчиком!"
-            )
+            val sharedPref = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+            val lang = sharedPref.getString("language_code", "uk") ?: "uk"
+            val alarmText = sharedPref.getString("alarm_text", DefaultAlarmText) ?: DefaultAlarmText
+            speak(alarmText, Locale(lang))
             lockScreenButton.isEnabled = true
             textView.text = message
             Toast.makeText(this, "From Alarm: $message", Toast.LENGTH_LONG).show()
