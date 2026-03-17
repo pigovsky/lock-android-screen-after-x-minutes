@@ -40,6 +40,34 @@
         android:layout_height="wrap_content"
         android:hint="Language code" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Time Narration Interval (24h format):" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_start_hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Start Hour (e.g., 8)"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edit_end_hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="End Hour (e.g., 9)"
+            android:inputType="number" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/save_settings_button"
         android:layout_width="match_parent"

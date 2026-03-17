@@ -65,6 +65,8 @@ class MainActivity : ComponentActivity() {
 
         textToSpeech = TextToSpeech(this, onSpeechInit)
 
+        scheduleTimeNarration(this)
+
         findViewById<Button>(R.id.settings_button).setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }

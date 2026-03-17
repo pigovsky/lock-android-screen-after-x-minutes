@@ -60,6 +60,26 @@ fun scheduleAlarm(context: Context, delayInSeconds: Int): Date {
     return time
 }
 
+fun scheduleTimeNarration(context: Context) {
+    val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    val intent = Intent(context, TimeNarrationReceiver::class.java)
+    val pendingIntent = PendingIntent.getBroadcast(
+        context,
+        1, // Unique ID for narration
+        intent,
+        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
+    // Schedule every 5 minutes (300,000 ms)
+    alarmManager.setRepeating(
+        AlarmManager.RTC_WAKEUP,
+        System.currentTimeMillis(),
+        300000,
+        pendingIntent
+    )
+    Log.d("Scheduler", "Time narration scheduled every 5 minutes")
+}
+
 private fun scheduleUnexact(
     alarmManager: AlarmManager,
     calendar: Calendar,

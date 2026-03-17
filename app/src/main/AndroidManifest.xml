@@ -33,6 +33,9 @@
         <receiver
             android:enabled="true" android:exported="false"
             android:name="com.pigovsky.lock_screen_after.MyAlarmReceiver" />
+        <receiver
+            android:enabled="true" android:exported="false"
+            android:name="com.pigovsky.lock_screen_after.TimeNarrationReceiver" />
         <activity
             android:name="com.pigovsky.lock_screen_after.SettingsActivity"
             android:exported="false"
